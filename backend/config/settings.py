@@ -126,3 +126,6 @@ INTERNAL_IPS = [
 
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
+
+# User model
+AUTH_USER_MODEL = "accounts.User"
