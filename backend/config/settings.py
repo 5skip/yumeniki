@@ -28,9 +28,12 @@ INSTALLED_APPS = [
 
     "debug_toolbar",
     "rest_framework",
+    "rest_framework.authtoken",
+    "djoser",
     "corsheaders",
-    "yumeniki",
     "accounts",
+    "yumeniki",
+    "page",
 ]
 
 MIDDLEWARE = [
@@ -123,6 +126,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
