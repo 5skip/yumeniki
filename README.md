@@ -1,13 +1,5 @@
 ## 環境構築
 
-### バックエンド
+### docker-compose.ymlがあるディレクトリで以下を実行
 
-backend/で以下を実行
-
-`pip -m venv myenv`
-
-`myenv/scripts/activate`
-
-`pip install -r requirements.txt`
-
-`python manage.py runserver`
+`docker-compose up`
