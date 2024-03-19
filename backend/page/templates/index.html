@@ -1,1 +1,26 @@
-<h3>Hello, world</h3>
+<html>
+    <h1>API一覧</h1>
+
+    <h3>ユーザー詳細API:<a href="http://localhost:8000/api/users/[id]/"> http://localhost:8000/api/users/[id]/</a></h3>
+    <p>
+        →自分のユーザ情報が見れるAPI(ユーザー本人じゃないと見れない) <strong>ユーザープロフィール画面に使う</strong>
+    </p>
+    <h3>投稿一覧API:<a href="http://localhost:8000/api/posts/"> http://localhost:8000/api/posts/</a></h3>
+    <p>
+        →自分が投稿した日記の一覧が見れるAPI(投稿したユーザー本人じゃないと見れない) <strong>日記一覧画面(カレンダー画面)に使う</strong>
+    </p>
+    <h3>投稿詳細API:<a href="http://localhost:8000/api/post-detail/[id]/"> http://localhost:8000/api/post-detail/[id]/</a></h3>
+    <p>
+        →自分が投稿した日記の詳細が見れるAPI(投稿したユーザー本人じゃないと見れない。日記の編集、削除もここでできる) <strong>日記詳細画面に使う</strong>
+    </p>
+    <h3>新規投稿API:<a href="http://localhost:8000/api/post-create/"> http://localhost:8000/api/post-create/</a></h3>
+    <p>
+        →新しい日記を投稿するAPI <strong>日記投稿画面に使う</strong>
+    </p>
+
+    <h3>*[id]には1とか2とか入れてみて</h3>
+
+    <h1>管理者画面</h1>
+    <h3><a href="http://localhost:8000/admin/">http://localhost:8000/admin/</a></h3>
+    <p>→ユーザー、DBを管理できるサイト。ユーザーと日記を追加、編集、削除したいときに使う。</p>
+</html>
