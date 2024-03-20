@@ -3,7 +3,7 @@ import { Calendar } from "@yamada-ui/calendar"
 import { useState } from "react"
 import { useRouter } from "next/router";
 
-export default function CalendarView() {
+export default function Chat() {
 
   const [date, setChange] = useState<Date>(new Date())
   const router = useRouter();

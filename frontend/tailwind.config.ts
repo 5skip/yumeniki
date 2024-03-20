@@ -14,6 +14,12 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    // 以下の部分！
+    colors: {
+      "bgPurple": "#F4C9FF",
+      "bgWhite": "#FFFFFF",
+      "theme": "#FF749E"
+    }
   },
   plugins: [],
 };
