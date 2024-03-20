@@ -7,7 +7,6 @@ urlpatterns = [
     #djoser
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.jwt')),
-    path('api/auth/', include('djoser.urls.authtoken')),
     #accounts
     path('api/', include('accounts.urls')),
     #yumeniki
