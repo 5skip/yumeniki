@@ -25,12 +25,10 @@ export default function SignupPage() {
       });
 
       if (response.status === 201) {
-        // ユーザー作成成功後のリダイレクト（例：ログインページへ）
         router.push('/');
       }
     } catch (error) {
       console.error('Signup error:', error);
-      // エラーハンドリングをここに実装
     }
   };
 
@@ -81,59 +79,3 @@ export default function SignupPage() {
     </div>
   );
 }
-
-// pages/signup.tsx
-
-// import axios from 'axios';
-// import { useState } from 'react';
-// import { useRouter } from 'next/router';
-
-// export default function SignupPage() {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const router = useRouter();
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-
-//     try {
-//       const response = await axios.post(`${process.env.NEXTAUTH_BACKEND_URL}/auth/users/`, {
-//         username,
-//         password,
-//       });
-
-//       if (response.status === 201) {
-//         // ユーザー作成成功後のリダイレクト（例：ログインページへ）
-//         router.push('/');
-//       }
-//     } catch (error) {
-//       console.error('Signup error:', error);
-//       // エラーハンドリングをここに実装
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Sign Up</h1>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Username:</label>
-//           <input
-//             type="text"
-//             value={username}
-//             onChange={(e) => setUsername(e.target.value)}
-//           />
-//         </div>
-//         <div>
-//           <label>Password:</label>
-//           <input
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//           />
-//         </div>
-//         <button type="submit">Sign Up</button>
-//       </form>
-//     </div>
-//   );
-// }
