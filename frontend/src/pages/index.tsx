@@ -1,8 +1,25 @@
 import { signIn } from 'next-auth/react';
+import { useState, FormEvent } from 'react';
 import Link from 'next/link';
 import { Flex, Text, Box, Button, VStack, Input, Center, Spacer, Container } from '@yamada-ui/react';
 
-export default function HomePage() {
+const LoginPage: React.FC = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const result = await signIn('credentials', {
+      redirect: false, 
+      username,
+      password,
+      callbackUrl: `${window.location.origin}/home`
+    });
+
+    if (result && result.url) window.location.href = result.url; // リダイレクト
+  };
+
   return (
     <div>
       <Center h="xl">
@@ -16,7 +33,8 @@ export default function HomePage() {
               fontWeight="bold"
               bgGradient="linear(to-l, #7928CA, #FF0080)"
               bgClip="text"
-              >Welcome to 夢ニキ
+              >
+                Welcome to 夢ニキ
               </Text>
             </Center>
 
@@ -31,7 +49,7 @@ export default function HomePage() {
                 bgGradient="linear(to-l, #7928CA, #FF0080)"
                 bgClip="text"
               >
-                Don't have an account? Sign Up <Link href="/signup">here</Link>
+                Don't have an account? Sign up <Link href="/signup">here</Link>
               </Text>
             </Center>
           </VStack>
@@ -40,3 +58,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+export default LoginPage;
