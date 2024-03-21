@@ -1,5 +1,6 @@
 "use client";
 
+import { ChakraProvider } from '@chakra-ui/react'
 import { Flex } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
@@ -53,21 +54,23 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
-      <div className="mb-10">
-        <AnimatePresence>
-          {chats.slice(1, chats.length).map((chat, index) => {
-            return <Chat role={chat.role} content={chat.content} key={index} />;
-          })}
-        </AnimatePresence>
-        {isSubmitting && (
-          <Flex alignSelf="flex-start" px="2rem" py="0.5rem">
-            <ThreeDotsLoader />
-          </Flex>
-        )}
+    <ChakraProvider>
+      <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+        <div className="mb-10">
+          <AnimatePresence>
+            {chats.slice(1, chats.length).map((chat, index) => {
+              return <Chat role={chat.role} content={chat.content} key={index} />;
+            })}
+          </AnimatePresence>
+          {isSubmitting && (
+            <Flex alignSelf="flex-start" px="2rem" py="0.5rem">
+              <ThreeDotsLoader />
+            </Flex>
+          )}
+        </div>
+        <InputForm onSubmit={handleSubmit} />
       </div>
-      <InputForm onSubmit={handleSubmit} />
-    </div>
+    </ChakraProvider>
   );
 };
 
