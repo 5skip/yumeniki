@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
       redirect: false, 
       username,
       password,
-      callbackUrl: `${window.location.origin}/chat`
+      callbackUrl: `${window.location.origin}/calender`
     });
 
     if (result && result.url) window.location.href = result.url;
