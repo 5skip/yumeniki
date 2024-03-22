@@ -37,23 +37,27 @@ const Chat = ({ content, role }: Message) => {
         gap="5px"
         w="full"
         flexDir={role === "assistant" ? "row" : "row-reverse"}
-        mt="10"
+        // mt="10"
       >
+        <Avatar
+          name={role === "user" ? "Me" : "夢ニキ？"}
+          w="40px"
+          h="40px"
+          src= "https://media.discordapp.net/attachments/1218148068730470422/1220359361810137128/DALLE_2024-03-21_22.11.58_-_Create_another_logo_design_featuring_a_cute_robot_character_emphasizing_purple_hues_within_the_bright_rainbow_colors_against_a_white_background._The_.webp?ex=660ea739&is=65fc3239&hm=0d3338bd2f73082bf8f7d961fbee8c00a4a76357c689894e201cdaf02b948bfb&=&format=webp&width=1098&height=1098"
+        />
         <Flex
           borderWidth={1}
           borderColor="blue.400"
           bg="main-bg"
           p="0.5rem 1rem"
           w="auto"
-          mt="16"
           rounded={
             role === "assistant" ? "0 20px 20px 20px" : "20px 0 20px 20px"
           }
           fontSize={{ base: "8px", md: "18px" }}
           flexDir="column"
         >
-          {role === "assistant" && (
-            <Flex
+          <Flex
               alignSelf="flex-end"
               fontStyle="italic"
               opacity={0.4}
@@ -63,19 +67,6 @@ const Chat = ({ content, role }: Message) => {
             >
               占い師
             </Flex>
-          )}
-          {role === "user" && (
-            <Flex
-              alignSelf="flex-start"
-              fontStyle="italic"
-              opacity={0.4}
-              fontSize="8px"
-              as="small"
-              fontWeight={500}
-            >
-              あなた
-            </Flex>
-          )}
           {role === "assistant" ? chatMessage || "" : content || ""}
         </Flex>
       </Flex>
