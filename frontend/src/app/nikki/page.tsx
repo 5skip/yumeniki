@@ -5,17 +5,17 @@ import { Flex } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import Chat from "./components/Chat";
-import InputForm from "./components/InputForm";
-import { Message } from "./types/custom";
-import ThreeDotsLoader from "./components/ThreeDotsLoader";
+import Chat from "../components/Chat";
+import InputForm from "../components/InputForm";
+import { Message } from "../types/custom";
+import ThreeDotsLoader from "../components/ThreeDotsLoader";
 import { Button, ButtonGroup } from '@chakra-ui/react'
 
 const Home: NextPage = () => {
   const [chats, setChats] = useState<Message[]>([
     {
       role: "system",
-      content: "あなたは夢占い師の老婆です。必ずタメ口で老婆のように話してください。人生のアドバイスではなく夢を占ってください。夢占いの結果のみ出力してください。",
+      content: "あなたは夢占い師ロボットです。必ずロボットように話してください。語尾は「デス」「マス」のようにカタカタにしてください。人生のアドバイスではなく夢を占ってください。夢占いの結果のみ出力してください。",
     },
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);

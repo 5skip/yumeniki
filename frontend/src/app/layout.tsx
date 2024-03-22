@@ -17,11 +17,11 @@ export default function RootLayout({
     <html lang="ja">
       <head />
       <body >
-          <UIProvider>
-            <Main>
-              {children}
-            </Main>
-          </UIProvider>
+        <UIProvider>
+          <Main>
+            {children}
+          </Main>
+        </UIProvider>
       </body>
     </html>
   );
