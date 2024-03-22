@@ -1,4 +1,3 @@
-import { getAuthSession } from "../../lib/nextauth"
 import { UIProvider } from "@yamada-ui/react";
 import "./globals.css";
 import Main from "./Main";

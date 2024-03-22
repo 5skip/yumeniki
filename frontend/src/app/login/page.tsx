@@ -1,60 +1,78 @@
-<img src="yumeniki_logo.webp" alt="" width="400"/>
 "use client"
 
 import { signIn } from 'next-auth/react';
 import { useState, FormEvent } from 'react';
-import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { Flex, Text, Box, Button, VStack, Input, Center, Spacer, Container } from '@yamada-ui/react';
-import { getAuthSession } from '../../../lib/nextauth';
-import { z } from "zod"
-import { useForm, SubmitHandler } from "react-hook-form"
-// import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@yamada-ui/react"
-// import { zodResolver } from "@hookform/resolvers/zod"
 
-const LoginPage = async () => {
-  const user = await getAuthSession();
+const LoginPage = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  if (user) {
-    redirect("/")
-  }
+  const handleSubmit = async () => {
+    const result = await signIn('credentials', {
+      redirect: false, 
+      username,
+      password,
+      callbackUrl: `${window.location.origin}/main`
+    });
+
+    if (result && result.url) window.location.href = result.url;
+  };
 
   return (
     <div>
-    	<div className="max-w-[400px] m-auto">
-      <div className="text-2xl font-bold text-center mb-10">ログイン</div>
+      <Center>
+        <img src="yumeniki_logo.webp" alt="" width="400"/>
+      </Center>
+      <Center h="xl">
+        <Container>
+          <VStack>
 
-      	{/* <Form >
-          <FormField
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>パスワード</FormLabel>
-                <FormControl>
-                  <Input type="password" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button disabled={isLoading} type="submit" className="w-full">
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            ログイン
-          </Button>
-        </form>
-      </Form>
+            <Center>
+            <Text
+              fontSize="xl"
+              fontWeight="bold"
+              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bgClip="text"
+              >
+              夢ニキ
+            </Text>
+            </Center>
 
-      <div className="text-center mt-5">
-        <Link href="/reset-password" className="text-sm text-blue-500">
-          パスワードを忘れた方はこちら
-        </Link>
-      </div>
+            <Center>
+            <Input
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              />
+              </Center>
 
-      <div className="text-center mt-2">
-        <Link href="/signup" className="text-sm text-blue-500">
-          アカウントを作成する
-        </Link> */}
-      </div>
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              />
+
+            <Center>
+              <Button colorScheme="fuchsia" variant="outline" onClick={handleSubmit}>Sign In</Button>
+            </Center>
+            
+            <Center>
+              <Text 
+                fontSize="xs"
+                fontWeight="bold"
+                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                bgClip="text"
+                >
+                Don't have an account? Sign up <Link href="/signup">here</Link>
+              </Text>
+            </Center>
+          
+          </VStack>
+        </Container>
+      </Center>
     </div>
   );
 };
