@@ -10,6 +10,7 @@ import InputForm from "../components/InputForm";
 import { Message } from "../types/custom";
 import ThreeDotsLoader from "../components/ThreeDotsLoader";
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import { useSearchParams } from 'next/navigation'
 
 const Home: NextPage = () => {
   const [chats, setChats] = useState<Message[]>([
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
     },
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const searchParams = useSearchParams()
 
   const handleSubmit = async (message: Message) => {
     try {
@@ -58,6 +60,7 @@ const Home: NextPage = () => {
   return (
     <ChakraProvider>
     <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+      <h1>{searchParams.get('date')}</h1>
       <InputForm onSubmit={handleSubmit} />
       <div className="mb-10 h-72">
         {isSubmitting && (
@@ -67,7 +70,7 @@ const Home: NextPage = () => {
         )}
         <Flex alignSelf="flex-start" px="0rem" py="0.5rem">
           <AnimatePresence>
-            { (chats.slice(-1)[0].role == "assistant" && chats.length != 1) ? 
+            {(chats.slice(-1)[0].role == "assistant" && chats.length != 1) ? 
               <Chat role={chats.slice(-1)[0].role} content={chats.slice(-1)[0].content} key={1} /> :
               <div></div>
             }

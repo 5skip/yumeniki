@@ -3,6 +3,7 @@
 import { Calendar } from "@yamada-ui/calendar"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
+import Link from 'next/link'
 import React from "react";
 import { Text, Box, Button, VStack, Input, Center, Spacer, Container } from '@yamada-ui/react';
 
@@ -15,7 +16,7 @@ export const HomePage = () => {
     setChange(date);  // タップした日付をdateにセット
     console.log(date);
   };
-  
+
   return (
     // <div>
 		// 	<Center h="xl">
@@ -69,13 +70,19 @@ export const HomePage = () => {
               size="full"
               variant="subtle"
               today
+              dateFormat="YYYY年 MMMM"
               defaultValue={new Date(new Date().setDate(1))}
             />
         </Center>
-        <h1>{date.toDateString()}</h1>
-        <Button onClick={() => router.push('/')}>
-          作成
-        </Button>
+        <h1>{date.toISOString().slice(0,10)}</h1>
+        <Link
+          href={{
+            pathname: '/nikki',
+            query: {date: date.toISOString().slice(0,10)}
+          }}
+        >
+          <Button>作成</Button>
+        </Link>
       </div>
   )
 }
