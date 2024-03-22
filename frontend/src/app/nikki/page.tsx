@@ -9,15 +9,18 @@ import Chat from "../components/Chat";
 import InputForm from "../components/InputForm";
 import { Message } from "../types/custom";
 import ThreeDotsLoader from "../components/ThreeDotsLoader";
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { useSearchParams } from 'next/navigation'
 
 const Home: NextPage = () => {
   const [chats, setChats] = useState<Message[]>([
     {
       role: "system",
-      content: "あなたは夢占い師の老婆です。必ずタメ口で老婆のように話してください。",
+      content: "あなたは夢占い師ロボットです。必ずロボットように話してください。語尾は「デス」「マス」のようにカタカタにしてください。人生のアドバイスではなく夢を占ってください。夢占いの結果のみ出力してください。",
     },
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const searchParams = useSearchParams()
 
   const handleSubmit = async (message: Message) => {
     try {
@@ -46,6 +49,7 @@ const Home: NextPage = () => {
       }
       console.log(data.result)
       setChats((prev) => [...prev, data.result as Message]);
+      console.log(chats.length)
     } catch (error) {
       console.log(error);
     } finally {
@@ -55,21 +59,26 @@ const Home: NextPage = () => {
 
   return (
     <ChakraProvider>
-      <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
-        <div className="mb-10">
+    <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+      <h1>{searchParams.get('date')}</h1>
+      <InputForm onSubmit={handleSubmit} />
+      <div className="mb-10 h-72">
+        {isSubmitting && (
+          <Flex alignSelf="flex-start" px="2rem" py="0.5rem">
+            <ThreeDotsLoader />
+          </Flex>
+        )}
+        <Flex alignSelf="flex-start" px="0rem" py="0.5rem">
           <AnimatePresence>
-            {chats.slice(1, chats.length).map((chat, index) => {
-              return <Chat role={chat.role} content={chat.content} key={index} />;
-            })}
+            {(chats.slice(-1)[0].role == "assistant" && chats.length != 1) ? 
+              <Chat role={chats.slice(-1)[0].role} content={chats.slice(-1)[0].content} key={1} /> :
+              <div></div>
+            }
           </AnimatePresence>
-          {isSubmitting && (
-            <Flex alignSelf="flex-start" px="2rem" py="0.5rem">
-              <ThreeDotsLoader />
-            </Flex>
-          )}
-        </div>
-        <InputForm onSubmit={handleSubmit} />
+        </Flex>
       </div>
+      <Button colorScheme='blue'>保存する</Button>
+    </div>
     </ChakraProvider>
   );
 };

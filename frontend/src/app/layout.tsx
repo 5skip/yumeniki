@@ -16,12 +16,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head />
-      <body>
-          <UIProvider>
-            <Main>
-              {children}
-            </Main>
-          </UIProvider>
+       <body >
+        <UIProvider>
+          <Main>
+            {children}
+          </Main>
+        </UIProvider>
       </body>
     </html>
   );

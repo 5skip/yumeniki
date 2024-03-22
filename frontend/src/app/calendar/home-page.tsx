@@ -1,9 +1,11 @@
 "use client";
 
-import { Button } from "@yamada-ui/react"
 import { Calendar } from "@yamada-ui/calendar"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
+import Link from 'next/link'
+import React from "react";
+import { Text, Box, Button, VStack, Input, Center, Spacer, Container, HStack } from '@yamada-ui/react';
 
 export const HomePage = () => {
 
@@ -14,26 +16,37 @@ export const HomePage = () => {
     setChange(date);  // タップした日付をdateにセット
     console.log(date);
   };
-  
+
   return (
-      <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
-          <div className="bg-bgWhite p-[50px]">
-              <Calendar
-                value={date}
-                onChange={onChange}
-                size="full"
-                variant="subtle"
-                today
-                defaultValue={new Date(new Date().setDate(1))}
-              />
-            <div>
-              <h1>{date.toDateString()}</h1>
-              <Button onClick={() => router.push('/')}>
-                作成
-              </Button>
-            </div>
+    <>
+      <Container centerContent>
+        <VStack>
+          <Center>
+          <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+            <Calendar
+              value={date}
+              onChange={onChange}
+              size="full"
+              variant="subtle"
+              today
+              dateFormat="YYYY年 MMMM"
+              defaultValue={new Date(new Date().setDate(1))}
+            />
           </div>
-      </div>
+          </Center>
+          <Center>
+            <Link
+              href={{
+                pathname: '/nikki',
+                query: {date: date.toISOString().slice(0,10)}
+              }}
+            >
+              <Button colorScheme="fuchsia" variant="outline">作成</Button>
+            </Link>
+          </Center>
+        </VStack>
+      </Container>
+    </>
   )
 }
 
