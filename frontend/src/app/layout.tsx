@@ -6,6 +6,9 @@ export const metadata = {
   title: "yumeniki",
   description:
     "AIが夢占いをしてくれるアプリ",
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({

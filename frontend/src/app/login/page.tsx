@@ -14,7 +14,7 @@ const LoginPage = () => {
       redirect: false, 
       username,
       password,
-      callbackUrl: `${window.location.origin}/main`
+      callbackUrl: `${window.location.origin}/calendar`
     });
 
     if (result && result.url) window.location.href = result.url;
@@ -23,7 +23,7 @@ const LoginPage = () => {
   return (
     <div>
       <Center>
-        <img src="yumeniki_logo.webp" alt="" width="400"/>
+        <img src="yumeniki_logo.png" alt="" width="400"/>
       </Center>
       <Center h="xl">
         <Container>
