@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head />
-      <body >
+       <body >
         <UIProvider>
           <Main>
             {children}

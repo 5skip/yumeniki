@@ -5,5 +5,5 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'created_at', 'updated_at', 'user')
-    list_filter = ('user', 'created_at')
+    list_display = ('post_id', 'content', 'user', 'post_date')
+    list_filter = ('user', 'post_date')
