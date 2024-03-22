@@ -66,7 +66,7 @@ const LoginPage = () => {
                 bgGradient="linear(to-l, #7928CA, #FF0080)"
                 bgClip="text"
                 >
-                Don't have an account? Sign up <Link href="/signup">here</Link>
+                Don't have an account?<Link href="/signup">Sign up</Link>
               </Text>
             </Center>
           

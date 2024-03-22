@@ -20,7 +20,7 @@ class PostRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
-    lookup_field = "id"
+    lookup_field = "post_id"
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
