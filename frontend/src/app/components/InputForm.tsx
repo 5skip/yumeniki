@@ -27,11 +27,11 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center p-4 border-b border-gray-200"
+      className="flex flex-col items-center p-4 border-b border-gray-200"
     >
       <textarea
         ref={inputRef}
-        className="flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+        className="w-full h-40	 flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-100"
         placeholder="あなたの夢を入力..."
       />
       <button
