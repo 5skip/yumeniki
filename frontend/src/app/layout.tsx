@@ -16,9 +16,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head />
-      <body 
-      // className="min-h-screen bg-purple md:bg-purple-100"
-      >
+      <body>
           <UIProvider>
             <Main>
               {children}

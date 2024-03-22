@@ -7,7 +7,7 @@ class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
     content = models.TextField(blank=False)
     diagnosis = models.TextField(blank=True)
-    post_date = models.DateField(default=None)
+    post_date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

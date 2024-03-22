@@ -1,77 +1,80 @@
-"use client";
+"use client"
 
-import { ChakraProvider } from '@chakra-ui/react'
-import { Flex } from "@chakra-ui/react";
-import type { NextPage } from "next";
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import Chat from "./components/Chat";
-import InputForm from "./components/InputForm";
-import { Message } from "./types/custom";
-import ThreeDotsLoader from "./components/ThreeDotsLoader";
+import { signIn } from 'next-auth/react';
+import { useState, FormEvent } from 'react';
+import Link from 'next/link';
+import { Flex, Text, Box, Button, VStack, Input, Center, Spacer, Container } from '@yamada-ui/react';
 
-const Home: NextPage = () => {
-  const [chats, setChats] = useState<Message[]>([
-    {
-      role: "system",
-      content: "あなたは夢占い師の老婆です。必ずタメ口で老婆のように話してください。",
-    },
-  ]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const LoginPage = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  const handleSubmit = async (message: Message) => {
-    try {
-      setIsSubmitting(true);
-      setChats((prev) => [...prev, message]);
+  const handleSubmit = async () => {
+    const result = await signIn('credentials', {
+      redirect: false, 
+      username,
+      password,
+      callbackUrl: `${window.location.origin}/calendar`,
+    });
 
-      const response = await fetch("/api/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: [...chats, message].map((d) => ({
-            role: d.role,
-            content: d.content,
-          })),
-        }),
-      });
-
-      const data = await response.json();
-      if (response.status !== 200) {
-        throw (
-          data.error ||
-          new Error(`Request failed with status ${response.status}`)
-        );
-      }
-      console.log(data.result)
-      setChats((prev) => [...prev, data.result as Message]);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    if (result && result.url) window.location.href = result.url;
   };
 
   return (
-    <ChakraProvider>
-      <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
-        <div className="mb-10">
-          <AnimatePresence>
-            {chats.slice(1, chats.length).map((chat, index) => {
-              return <Chat role={chat.role} content={chat.content} key={index} />;
-            })}
-          </AnimatePresence>
-          {isSubmitting && (
-            <Flex alignSelf="flex-start" px="2rem" py="0.5rem">
-              <ThreeDotsLoader />
-            </Flex>
-          )}
-        </div>
-        <InputForm onSubmit={handleSubmit} />
-      </div>
-    </ChakraProvider>
+    <div>
+      <Center>
+        <img src="yumeniki_logo.png" alt="" width="400"/>
+      </Center>
+      <Center h="xl">
+        <Container>
+          <VStack>
+
+            <Center>
+            <Text
+              fontSize="xl"
+              fontWeight="bold"
+              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bgClip="text"
+              >
+              夢ニキ
+            </Text>
+            </Center>
+
+            <Center>
+            <Input
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              />
+              </Center>
+
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              />
+
+            <Center>
+              <Button colorScheme="fuchsia" variant="outline" onClick={handleSubmit}>Sign In</Button>
+            </Center>
+            
+            <Center>
+              <Text 
+                fontSize="xs"
+                fontWeight="bold"
+                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                bgClip="text"
+                >
+                Don't have an account?<Link href="/signup">Sign up</Link>
+              </Text>
+            </Center>
+          
+          </VStack>
+        </Container>
+      </Center>
+    </div>
   );
 };
 
-export default Home;
+export default LoginPage;
