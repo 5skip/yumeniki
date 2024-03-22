@@ -16,14 +16,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head />
-      <body 
-      // className="min-h-screen bg-purple md:bg-purple-100"
-      >
-          <UIProvider>
-            <Main>
-              {children}
-            </Main>
-          </UIProvider>
+       <body >
+        <UIProvider>
+          <Main>
+            {children}
+          </Main>
+        </UIProvider>
       </body>
     </html>
   );
