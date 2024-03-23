@@ -47,7 +47,8 @@ const Chat = ({ content, role }: Message) => {
         />
         <Flex
           borderWidth={1}
-          borderColor="blue.400"
+          className="border border-fuchsia-600"
+          // borderColor="fuchsia.600"
           bg="main-bg"
           p="0.5rem 1rem"
           w="auto"
