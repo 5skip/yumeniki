@@ -42,6 +42,7 @@ const LoginPage = () => {
             <Center>
             <Input
               placeholder="Username"
+              color="white"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               />
@@ -49,6 +50,7 @@ const LoginPage = () => {
 
             <Input
               type="password"
+              color="white"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
