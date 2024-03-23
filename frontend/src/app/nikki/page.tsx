@@ -57,6 +57,18 @@ const Home: NextPage = () => {
     }
   };
 
+  const savePost = () => {
+    let userDream: String = "" //ユーザーが見た夢
+    let dreamResult: String = "" //AIからの夢占い結果
+    if (chats.slice(-1)[0].role == "assistant" && chats.length != 1) {
+      userDream = chats.slice(-2, -1)[0].content
+      dreamResult = chats.slice(-1)[0].content
+    }
+    
+    console.log(userDream)
+    console.log(dreamResult)
+  };
+
   return (
     <ChakraProvider>
     <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
@@ -82,6 +94,7 @@ const Home: NextPage = () => {
         <button
           type="submit"
           className="w-21 py-2 font-black text-center text-fuchsia-600"
+          onClick={savePost}
         >
           保存する
         </button>
