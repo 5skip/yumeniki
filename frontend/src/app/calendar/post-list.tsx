@@ -11,7 +11,6 @@ interface Post {
   diagnosis?: string;
   post_date: string;
 	user: UserType;
-  // user など他に必要なフィールドがあれば追加
 }
 
 export const PostList = () => {
