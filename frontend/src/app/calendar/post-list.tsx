@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { PostType } from '../../types/posttype'; 
 import { Container, Center } from '@yamada-ui/react';
 import { UserType } from '../../types/usertype';
+import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 interface Post {
   post_id: number;
@@ -15,6 +17,7 @@ interface Post {
 
 export const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -35,13 +38,19 @@ export const PostList = () => {
 
   return (
     <div>
-		<Container centerContent className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+		<Container centerContent >
       <h1>日記一覧</h1>
 			<Center>
       <ul>
         {posts.map((post) => (
-					<li key={post.post_id} className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
-            <p>{post.post_date}: {post.content}</p>
+					<li key={post.post_id} className="w-48 max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+            <Link  href={{
+                pathname: '/post',
+                query: {date: post.post_date, content: post.content, diagnosis: post.diagnosis}
+              }}>
+                <p>{post.post_date}</p>
+                <p>{post.content}</p>
+            </Link>
           </li>
         ))}
       </ul>

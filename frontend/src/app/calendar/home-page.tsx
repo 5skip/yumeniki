@@ -19,7 +19,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <Container centerContent className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+      <Container centerContent >
         <VStack >
           <Center>
           <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
