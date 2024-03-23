@@ -4,12 +4,11 @@ from accounts.models import User
 # Create your models here.
     
 class Post(models.Model):
-    title = models.CharField(max_length=30, blank=True)
+    post_id = models.AutoField(primary_key=True)
     content = models.TextField(blank=False)
     diagnosis = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    post_date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.content
