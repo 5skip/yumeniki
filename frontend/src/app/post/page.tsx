@@ -6,9 +6,15 @@ import type { NextPage } from "next";
 import { AnimatePresence } from "framer-motion";
 import Chat from "../components/Chat";
 import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 const Home: NextPage = () => {
   const searchParams = useSearchParams()
+  const router = useRouter()
+
+  const backHandleClick = () => {
+    router.push("/calendar");
+  };
 
   return (
     <ChakraProvider>
@@ -33,7 +39,7 @@ const Home: NextPage = () => {
         <button
           type="submit"
           className="w-21 py-2 font-black text-center text-fuchsia-600"
-          // onClick={savePost}
+          onClick={backHandleClick}
         >
           戻る
         </button>
