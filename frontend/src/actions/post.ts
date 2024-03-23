@@ -37,25 +37,6 @@ export interface PostType {
   user: UserType
 }
 
-// 投稿一覧取得
-export const getPostList = async () => {
-  const options: RequestInit = {
-    method: "GET",
-    cache: "no-store",
-  }
-
-  // 投稿一覧取得
-  const result = await fetchAPI("/api/posts/", options)
-
-  if (!result.success) {
-    console.error(result.error)
-    return { success: false, posts: [] }
-  }
-
-  const posts: PostType[] = result.data
-
-  return { success: true, posts }
-}
 
 // 投稿詳細取得
 export const getPostDetail = async ({ postId }: { postId: string }) => {
@@ -125,6 +106,23 @@ interface UpdatePostType {
   content: string
   post_date: string
 }
+
+// const requestOptions = {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify({ content: userDream, diagnosis: dreamResult })
+// };
+
+// try {
+//   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/post-create/`, requestOptions);
+//   if (!response.ok) {
+//     throw new Error(`Request failed: ${response.status}`);
+//   }
+//   const data = await response.json();
+//   console.log('Post success:', data);
+// } catch (error) {
+//   console.error('Error during the post request:', error);
+// }
 
 // 投稿編集
 export const updatePost = async ({

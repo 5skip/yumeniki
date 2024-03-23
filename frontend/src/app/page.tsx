@@ -29,10 +29,10 @@ const LoginPage = () => {
             <Text
               fontSize="xl"
               fontWeight="bold"
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bgGradient="linear(to-l, #FFFFFf, #FFFFFF)"
               bgClip="text"
               >
-              夢ニキと話そう！
+              夢診断ロボット 『 夢ニキ 』
             </Text>
             </Center>
             <Center>
