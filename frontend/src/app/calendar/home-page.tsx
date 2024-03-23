@@ -27,7 +27,8 @@ export const HomePage = () => {
               value={date}
               onChange={onChange}
               size="full"
-              variant="subtle"
+              variant="solid"
+              colorScheme="secondary"
               today
               dateFormat="YYYY年 MMMM"
               defaultValue={new Date(new Date().setDate(1))}
