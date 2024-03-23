@@ -12,3 +12,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.content
+    
+class DummyPost(models.Model):
+    post_id = models.AutoField(primary_key=True)
+    content = models.TextField(blank=False)
+    diagnosis = models.TextField(blank=True)
+    post_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
