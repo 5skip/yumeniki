@@ -77,7 +77,15 @@ const Home: NextPage = () => {
           </AnimatePresence>
         </Flex>
       </div>
-      <Button colorScheme='blue'>保存する</Button>
+
+      <div className="w-21 border rounded-lg border-fuchsia-600 flex items-center justify-center hover:bg-fuchsia-50">
+        <button
+          type="submit"
+          className="w-21 py-2 font-black text-center text-fuchsia-600"
+        >
+          保存する
+        </button>
+      </div>
     </div>
     </ChakraProvider>
   );

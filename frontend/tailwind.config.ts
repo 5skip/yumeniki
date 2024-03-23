@@ -7,19 +7,19 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   // theme: {
-  //   extend: {
-  //     backgroundImage: {
-  //       "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-  //       "gradient-conic":
-  //         "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-  //     },
-  //   },
-  //   // 以下の部分！
-  //   colors: {
-  //     "bgPurple": "#F4C9FF",
-  //     "bgWhite": "#FFFFFF",
-  //     "theme": "#FF749E"
-  //   }
+    // extend: {
+    //   backgroundImage: {
+    //     "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+    //     "gradient-conic":
+    //       "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+    //   },
+    // },
+    // 以下の部分！
+    // colors: {
+    //   "fuchsia": "#FF00FF",
+    //   // "bgWhite": "#FFFFFF",
+    //   // "theme": "#FF749E"
+    // }
   // },
   plugins: [],
 };

@@ -27,19 +27,23 @@ const InputForm = ({ onSubmit }: InputFormProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col items-center p-4 border-b border-gray-200"
+      className="flex flex-col py-4 mb-4 border-b border-gray-200"
     >
-      <textarea
-        ref={inputRef}
-        className="w-full h-40	 flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-100"
-        placeholder="あなたの夢を入力..."
-      />
-      <button
-        type="submit"
-        className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-      >
-        送信
-      </button>
+      <div className="w-full my-4  border rounded-lg border-fuchsia-600">
+        <textarea
+          ref={inputRef}
+          className="w-full h-40 flex-grow px-4 py-2 "
+          placeholder="あなたの夢を入力..."
+        />
+      </div>
+      <div className="w-16 border rounded-lg border-fuchsia-600 flex items-center justify-center hover:bg-fuchsia-50">
+        <button
+          type="submit"
+          className="w-16 py-2 font-black text-center text-fuchsia-600"
+        >
+          送信
+        </button>
+      </div>
     </form>
   );
 };
