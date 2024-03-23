@@ -17,7 +17,7 @@ export const authOptions: NextAuthOptions = ({
         }
 
         try {
-          const res = await axios.post(`${process.env.NEXTAUTH_BACKEND_URL}/api/auth/jwt/create`, {
+          const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/jwt/create`, {
           username: credentials.username,
             password: credentials.password
           });

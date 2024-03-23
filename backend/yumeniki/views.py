@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Post
 from .serializers import PostSerializer
 
@@ -10,10 +10,12 @@ from .serializers import PostSerializer
 class PostListAPIView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (AllowAny,)
 
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+    # permission_classes = [IsAuthenticated]
+
+    # def get_queryset(self):
+    #     return self.queryset.filter(user=self.request.user)
 
 #投稿詳細API（GET詳細, PUT, DELETE）
 class PostRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
