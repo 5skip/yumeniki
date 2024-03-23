@@ -22,13 +22,9 @@ const LoginPage = () => {
 
   return (
     <div>
-      <Center>
-        <img src="yumeniki_logo.png" alt="" width="400"/>
-      </Center>
       <Center h="xl">
         <Container>
           <VStack>
-
             <Center>
             <Text
               fontSize="xl"
@@ -36,8 +32,11 @@ const LoginPage = () => {
               bgGradient="linear(to-l, #7928CA, #FF0080)"
               bgClip="text"
               >
-              夢ニキ
+              夢ニキと話そう！
             </Text>
+            </Center>
+            <Center>
+              <img src="yumeniki_logo.png" alt="" width="400"/>
             </Center>
 
             <Center>
