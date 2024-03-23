@@ -29,10 +29,10 @@ const LoginPage = () => {
             <Text
               fontSize="xl"
               fontWeight="bold"
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bgGradient="linear(to-l, #FFFFFf, #FFFFFF)"
               bgClip="text"
               >
-              夢ニキと話そう！
+              夢診断ロボット 『 夢ニキ 』
             </Text>
             </Center>
             <Center>
@@ -42,6 +42,7 @@ const LoginPage = () => {
             <Center>
             <Input
               placeholder="Username"
+              color="white"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               />
@@ -49,6 +50,7 @@ const LoginPage = () => {
 
             <Input
               type="password"
+              color="white"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

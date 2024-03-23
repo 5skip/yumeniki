@@ -57,10 +57,45 @@ const Home: NextPage = () => {
     }
   };
 
+  const savePost = async () => {
+    let userDream: String = "" //ユーザーが見た夢
+    let dreamResult: String = "" //AIからの夢占い結果
+    if (chats.slice(-1)[0].role == "assistant" && chats.length != 1) {
+      userDream = chats.slice(-2, -1)[0].content
+      dreamResult = chats.slice(-1)[0].content
+    }
+    
+    console.log(userDream)
+    console.log(dreamResult)
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/post-create/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `JWT ${accessToken}`,
+        },
+        body: JSON.stringify({ 
+          content: userDream, 
+          diagnosis: dreamResult, 
+        }),
+      });
+    
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log("Post created successfully:", data);
+    } catch (error) {
+      console.error("Failed to create post:", error);
+    }
+  }
+
   return (
     <ChakraProvider>
     <div className="w-full max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
-      <h1>{searchParams.get('date')}</h1>
+      <h1>{searchParams?.get('date')}</h1>
       <InputForm onSubmit={handleSubmit} />
       <div className="mb-10 h-72">
         {isSubmitting && (
@@ -77,7 +112,16 @@ const Home: NextPage = () => {
           </AnimatePresence>
         </Flex>
       </div>
-      <Button colorScheme='blue'>保存する</Button>
+
+      <div className="w-21 border rounded-lg border-fuchsia-600 flex items-center justify-center hover:bg-fuchsia-50">
+        <button
+          type="submit"
+          className="w-21 py-2 font-black text-center text-fuchsia-600"
+          onClick={savePost}
+        >
+          保存する
+        </button>
+      </div>
     </div>
     </ChakraProvider>
   );

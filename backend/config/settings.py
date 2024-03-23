@@ -25,18 +25,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     "debug_toolbar",
     "rest_framework",
     "rest_framework.authtoken",
     "djoser",
     "corsheaders",
-    "accounts",
+    "accounts.apps.AccountsConfig",
     "yumeniki",
     "page",
 ]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -125,18 +127,19 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-# REST_FRAMEWORK
+#REST_FRAMEWORK
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     "rest_framework_simplejwt.authentication.JWTAuthentication",
+    # ],
     "DATETIME_FORMAT": "%Y/%m/%d %H:%M",
 }
 
-# JWT
+#JWT
 SIMPLE_JWT = {
     'USER_ID_FIELD': 'user_id',
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
@@ -149,10 +152,15 @@ SIMPLE_JWT = {
 DJOSER = {
     "LOGIN_FIELD": "username",
     "USER_CREATE_PASSWORD_RETYPE": True,
+    'SEND_ACTIVATION_EMAIL': False,
     "SERIALIZERS": {
         "user_create": "accounts.serializers.UserCreateSerializer",
+        # "token_create": "djoser.serializers.TokenCreateSerializer",
+        # 'user_create': 'djoser.serializers.UserCreateSerializer',
         "user": "accounts.serializers.UserSerializer",
         "current_user": "accounts.serializers.UserSerializer",
+        # 'token_create': 'djoser.serializers.TokenCreateSerializer',
+        # 'user': 'djoser.serializers.UserSerializer',
     },
 }
 
