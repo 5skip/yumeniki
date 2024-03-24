@@ -48,7 +48,6 @@ export const PostList: React.FC<{ day: String }> = ({ day })=> {
     <div>
 		<Container centerContent >
       <h1>日記一覧</h1>
-      <h1>{day}</h1>
 			<Center>
       <ul>
         {filteredPosts.map((post) => (
