@@ -8,6 +8,7 @@ import Chat from "../components/Chat";
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation';
 
+
 const Home: NextPage = () => { ///日記の詳細画面
   const searchParams = useSearchParams()
   const router = useRouter()
