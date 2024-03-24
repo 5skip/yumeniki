@@ -15,7 +15,7 @@ interface Post {
 	user: UserType;
 }
 
-export const PostList = () => {
+export const PostList: React.FC<{ day: String }> = ({ day })=> {
   const [posts, setPosts] = useState<Post[]>([]);
   const router = useRouter();
 
@@ -40,6 +40,7 @@ export const PostList = () => {
     <div>
 		<Container centerContent >
       <h1>日記一覧</h1>
+      <h1>{day}</h1>
 			<Center>
       <ul>
         {posts.map((post) => (

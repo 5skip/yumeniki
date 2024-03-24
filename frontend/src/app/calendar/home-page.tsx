@@ -7,13 +7,14 @@ import Link from 'next/link'
 import React from "react";
 import { Text, Box, Button, VStack, Input, Center, Spacer, Container, HStack } from '@yamada-ui/react';
 
-export const HomePage = () => {
+export const HomePage: React.FC<{ handleClick: (day: String) => void }> = ({ handleClick }) => {
 
   const [date, setChange] = useState<Date>(new Date());
   const router = useRouter();
 
   const onChange = (date: Date) => {
     setChange(date);  // タップした日付をdateにセット
+    handleClick(date.toISOString().slice(0,10))
     console.log(date);
   };
 
