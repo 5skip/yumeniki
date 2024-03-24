@@ -18,6 +18,7 @@ interface Post {
 export const PostList: React.FC<{ day: String }> = ({ day })=> {
   const [posts, setPosts] = useState<Post[]>([]);
   const router = useRouter();
+  // let filteredPosts = posts
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -36,6 +37,13 @@ export const PostList: React.FC<{ day: String }> = ({ day })=> {
     fetchPosts();
   }, []); 
 
+  let filteredPosts = [];
+  if (day == "") {
+    filteredPosts = posts
+  } else {
+    filteredPosts = posts.filter((post) => post.post_date === day);
+  }
+
   return (
     <div>
 		<Container centerContent >
@@ -43,7 +51,7 @@ export const PostList: React.FC<{ day: String }> = ({ day })=> {
       <h1>{day}</h1>
 			<Center>
       <ul>
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
 					<li key={post.post_id} className="w-40 max-w-2xl bg-white rounded-lg shadow-md p-4 md:p-10 my-10 sm:w-80 lg:w-48">
             <Link  href={{ ///日記一覧から日記詳細画面へ
                 pathname: '/post',

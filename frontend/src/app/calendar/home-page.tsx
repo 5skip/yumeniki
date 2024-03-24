@@ -14,7 +14,7 @@ export const HomePage: React.FC<{ handleClick: (day: String) => void }> = ({ han
 
   const onChange = (date: Date) => {
     setChange(date);  // タップした日付をdateにセット
-    handleClick(date.toISOString().slice(0,10))
+    handleClick(date.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replaceAll('/', '-'))
     console.log(date);
   };
 
@@ -40,7 +40,7 @@ export const HomePage: React.FC<{ handleClick: (day: String) => void }> = ({ han
             <Link
               href={{
                 pathname: '/nikki',
-                query: {date: date.toISOString().slice(0,10)}
+                query: {date: date.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replaceAll('/', '-')}
               }}
             >
               <Button colorScheme="fuchsia" variant="outline">作成</Button>
