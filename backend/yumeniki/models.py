@@ -17,7 +17,7 @@ class DummyPost(models.Model):
     post_id = models.AutoField(primary_key=True)
     content = models.TextField(blank=False)
     diagnosis = models.TextField(blank=True)
-    post_date = models.DateField(auto_now_add=True)
+    post_date = models.DateField(auto_now_add=False)
 
     def __str__(self):
         return self.content

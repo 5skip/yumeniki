@@ -8,7 +8,7 @@ from .serializers import PostSerializer
 
 #投稿一覧API（GET一覧）
 class PostListAPIView(ListAPIView):
-    queryset = DummyPost.objects.all().order_by('-post_id')
+    queryset = DummyPost.objects.all().order_by('-post_date')
     serializer_class = PostSerializer
     permission_classes = (AllowAny,)
 
