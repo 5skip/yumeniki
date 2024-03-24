@@ -4,10 +4,12 @@ import { signIn } from 'next-auth/react';
 import { useState, FormEvent } from 'react';
 import Link from 'next/link';
 import { Flex, Text, Box, Button, VStack, Input, Center, Spacer, Container } from '@yamada-ui/react';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const router = useRouter()
 
   const handleSubmit = async () => {
     const result = await signIn('credentials', {
@@ -18,6 +20,10 @@ const LoginPage = () => {
     });
 
     if (result && result.url) window.location.href = result.url;
+  };
+
+  const nextHandleClick = () => {
+    router.push("/calendar");
   };
 
   return (
@@ -57,7 +63,7 @@ const LoginPage = () => {
               />
 
             <Center>
-              <Button colorScheme="fuchsia" variant="outline" onClick={handleSubmit}>Sign In</Button>
+              <Button colorScheme="fuchsia" variant="outline" onClick={nextHandleClick}>Sign In</Button>
             </Center>
             
             <Center>

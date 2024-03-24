@@ -11,6 +11,7 @@ import { Message } from "../types/custom";
 import ThreeDotsLoader from "../components/ThreeDotsLoader";
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 const Home: NextPage = () => {
   const [chats, setChats] = useState<Message[]>([
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   const handleSubmit = async (message: Message) => {
     try {
@@ -57,6 +59,7 @@ const Home: NextPage = () => {
     }
   };
 
+
   const savePost = async () => {
     let userDream: String = "" //ユーザーが見た夢
     let dreamResult: String = "" //AIからの夢占い結果
@@ -86,6 +89,7 @@ const Home: NextPage = () => {
       }
 
       const data = await res.json();
+      router.push("/calendar");
       console.log("Post created successfully:", data);
     } catch (error) {
       console.error("Failed to create post:", error);
