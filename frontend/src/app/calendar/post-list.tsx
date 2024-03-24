@@ -43,7 +43,7 @@ export const PostList = () => {
 			<Center>
       <ul>
         {posts.map((post) => (
-					<li key={post.post_id} className="w-48 max-w-2xl bg-white md:rounded-lg md:shadow-md p-4 md:p-10 my-10">
+					<li key={post.post_id} className="w-40 max-w-2xl bg-white rounded-lg shadow-md p-4 md:p-10 my-10 sm:w-80 lg:w-48">
             <Link  href={{ ///日記一覧から日記詳細画面へ
                 pathname: '/post',
                 query: {date: post.post_date, content: post.content, diagnosis: post.diagnosis}
