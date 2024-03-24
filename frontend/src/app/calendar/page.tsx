@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div className="w-2/3 bg-white md:rounded-lg md:shadow-md md:p-10 my-10">
       <div className="flex flex-col-reverse lg:flex-row">
-        <PostList day={day}/>
+        <PostList day={day} handleClick={handleClick}/>
         <Spacer />
         <HomePage handleClick={handleClick} />
       </div>

@@ -15,7 +15,7 @@ interface Post {
 	user: UserType;
 }
 
-export const PostList: React.FC<{ day: String }> = ({ day })=> {
+export const PostList: React.FC<{ day: String , handleClick: (day: String) => void }> = ({ day, handleClick })=> {
   const [posts, setPosts] = useState<Post[]>([]);
   const router = useRouter();
   // let filteredPosts = posts
@@ -47,7 +47,7 @@ export const PostList: React.FC<{ day: String }> = ({ day })=> {
   return (
     <div>
 		<Container centerContent >
-      <h1>日記一覧</h1>
+      <button onClick={() => { handleClick("") }}><h1>日記一覧</h1></button>
 			<Center>
       <ul>
         {filteredPosts.map((post) => (
