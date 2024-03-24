@@ -1,4 +1,5 @@
 # 夢診断日記アプリ「夢ニキ」
+チャットbotに昨日見た夢を占ってもらい、日記につけるアプリです。
 
 <img width="600" alt="Screenshot 2024-03-24 at 13 58 13" src="https://github.com/5skip/yumeniki/assets/107281831/ba9f91a1-f186-4b45-ab74-17d462249f0d">
 
