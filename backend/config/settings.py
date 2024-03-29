@@ -28,10 +28,11 @@ INSTALLED_APPS = [
 
     "debug_toolbar",
     "rest_framework",
-    "rest_framework.authtoken",
-    "djoser",
+    "oauth2_provider",
+    "social_django",
+    "drf_social_oauth2",
     "corsheaders",
-    "accounts.apps.AccountsConfig",
+    "accounts",
     "yumeniki",
     "page",
 ]
@@ -62,6 +63,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                "social_django.context_processors.backends",
+                "social_django.context_processors.login_redirect",
             ],
         },
     },
@@ -129,40 +133,24 @@ INTERNAL_IPS = [
 
 #REST_FRAMEWORK
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.AllowAny',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        "drf_social_oauth2.authentication.SocialAuthentication",
     ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     "rest_framework_simplejwt.authentication.JWTAuthentication",
-    # ],
-    "DATETIME_FORMAT": "%Y/%m/%d %H:%M",
 }
 
-#JWT
-SIMPLE_JWT = {
-    'USER_ID_FIELD': 'user_id',
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "AUTH_HEADER_TYPES": ("JWT",),
-    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
-}
+#OAUTH2
+AUTHENTICATION_BACKENDS = (
+    "drf_social_oauth2.backends.DjangoOAuth2",
+    "django.contrib.auth.backends.ModelBackend",
+    "social_core.backends.google.GoogleOAuth2",
+)
 
-# DJOSER
-DJOSER = {
-    "LOGIN_FIELD": "username",
-    "USER_CREATE_PASSWORD_RETYPE": True,
-    'SEND_ACTIVATION_EMAIL': False,
-    "SERIALIZERS": {
-        "user_create": "accounts.serializers.UserCreateSerializer",
-        # "token_create": "djoser.serializers.TokenCreateSerializer",
-        # 'user_create': 'djoser.serializers.UserCreateSerializer',
-        "user": "accounts.serializers.UserSerializer",
-        "current_user": "accounts.serializers.UserSerializer",
-        # 'token_create': 'djoser.serializers.TokenCreateSerializer',
-        # 'user': 'djoser.serializers.UserSerializer',
-    },
-}
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+]
 
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True

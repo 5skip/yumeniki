@@ -4,9 +4,8 @@ from django.urls import path,include
 urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path('admin/', admin.site.urls),
-    #djoser
-    path('api/auth/', include('djoser.urls')),
-    path('api/auth/', include('djoser.urls.jwt')),
+    #drf-social-oauth2
+    path("api/auth/", include("drf_social_oauth2.urls", namespace="drf")),
     #accounts
     path('api/', include('accounts.urls')),
     #yumeniki
